@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>create new route</title>
+    <link rel="stylesheet" href="./bus.css">
+    <style>
+        body {
+          background-color: #252525;
+        }
+      </style>
+</head>
+<body>
+    <div id="navbar">
+        
+        <ul>
+           <li> <a href="./bus-admin.html">Back</a></li>
+          <li> <a href="./bus-real-homepage.html">Logout</a> </li>
+          <li> <a href="./userpage.html">View as customer</a> </li>
+        </ul>
+      </div>
+      <div class="createrouteinput">
+        <input type="text"  placeholder="bus-name" id="input1"> <br></br>
+        <input type="text"  placeholder="from"  id="input2"> <br></br>
+        <input type="text" placeholder="to" id="input3" /><br></br>
+        <input type="text" placeholder="arrival" id="input4" /><br></br>
+        <input type="text" placeholder="reach time" id="input5" /><br></br>
+        <input type="number" placeholder="price" id="input6" /><br></br>
+        <button onclick="submit()" id="subbmitt" class="goldcolor-button">submit</button>
+    </div>
+ 
+    <script>
+        var busdetails = [
+            { name: "kaveri travels", from: "hyderabad", to: "kochi", arrival: "4:00 PM", reach: "10:00 AM", price: "3000" },
+            { name: "sindhuja", from: "vijaywada", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "4000" },
+            { name: "orange travels", from: "vijaywada", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "6500" },
+            { name: "strawberry travels", from: "punjab", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "3400" },
+            { name: "kaveri travels", from: "bihar`", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "9500" },
+            { name: "kaveri travels", from: "vijaywada", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "3600" },
+            { name: "kaveri travels", from: "kolkata", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "2300" },
+            { name: "reena travels", from: "orissa", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "9000" },
+            { name: "reena travels", from: "kolkata", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "8000" },
+            { name: "reena travels", from: "hyderabad", to: "kochi", arrival: "4:00 PM", reach: "10:00 AM", price: "7000" },
+            { name: "reena travels", from: "vijaywada", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "6000" },
+            { name: "strawberry travels", from: "vijaywada", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "5000" },
+            { name: "strawberry travels", from: "kanyakumari", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "4000" },
+            { name: "strawberry travels", from: "vijaywada", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "3000" },
+            { name: "strawberry travels", from: "kolkata", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "2000" },
+            { name: "orange travels", from: "amaravathi", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "1000" },
+            { name: "orange travels", from: "kolkata", to: "kochi", arrival: "4:00 PM", reach: "10:00 AM", price: "1000" },
+            { name: "orange travels", from: "warangal", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "2000" },
+            { name: "orange travels", from: "vijaywada", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "3000" },
+            { name: "vikas premium bus", from: "kolkata", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "4000" },
+            { name: "vikas premium bus", from: "warangal", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "5000" },
+            { name: "vikas premium bus", from: "ooty", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "6000" },
+            { name: "vikas premium bus", from: "vijaywada", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "7000" },
+            { name: "mhedipatnam cheap travels", from: "warangal", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "8000" },
+            { name: "mhedipatnam cheap travels", from: "ooty", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "9000" },
+            { name: "mhedipatnam cheap travels", from: "vijaywada", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "3000" },
+            { name: "premavathi talab", from: "assam", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "3000" },
+            { name: "premavathi talab", from: "meghalaya", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "3000" },
+            { name: "premavathi talab", from: "chennai", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "3000" },
+            { name: "premavathi talab", from: "vijaywada", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "3000" },
+            { name: "premavathi talab", from: "coimbatore", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "3000" },
+            { name: "origin nala bus", from: "chennai", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "3000" },
+            { name: "origin nala bus", from: "vijaywada", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "3000" },
+            { name: "origin nala bus", from: "vijaywada", to: "kochi", arrival: "4:00 PM", reach: "10:00 AM", price: "3000" },
+            { name: "origin nala bus", from: "sikkim", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "9800" },
+            { name: "gayathri travels", from: "assam", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "3000" },
+            { name: "gayathri travels", from: "mumbai", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "3000" },
+            { name: "ayathri travels", from: "sikkim", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "3000" },
+            { name: "ayathri travels", from: "vijaywada", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "3000" },
+            { name: "dell", from: "pondicherry", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "3000" },
+            { name: "dell", from: "vijaywada", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "3000" },
+            { name: "dell", from: "mumbai", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "3000" },
+            { name: "dell", from: "kochi", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "3000" },
+            { name: "dell", from: "vijaywada", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "3000" },
+            { name: "ac travels", from: "mumbai", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "3000" },
+            { name: "ac travels", from: "pune", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "3000" },
+            { name: "ac travels", from: "surat", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "3000" },
+            { name: "ac travels", from: "jaipur", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "3000" },
+            { name: "ac travels", from: "jaipur", to: "kochi", arrival: "4:00 PM", reach: "10:00 AM", price: "3000" },
+            { name: "ac travels", from: "vijaywada", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "3000" },
+            { name: "vivo travles", from: "raipur", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "3000" },
+            { name: "vivo travles", from: "delhi", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "3000" },
+            { name: "vivo travels", from: "vijaywada", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "1100" },
+            { name: "kaveri travelsu", from: "vijaywada", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "2200" },
+            { name: "kaveri travelsu", from: "delhi", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "3300" },
+            { name: "kaveri travelsu", from: "jammu", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "4400" },
+            { name: "kaveri travelsu", from: "kashmir", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "5000" },
+            { name: "jalebi", from: "vijaywada", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "6000" },
+            { name: "jalebi", from: "delhi", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "7000" },
+            { name: "hp travels", from: "calicut", to: "kochi", arrival: "4:00 PM", reach: "10:00 AM", price: "8000" },
+            { name: "hp travels", from: "wayanad", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "9000" },
+            { name: "hp travels", from: "vijaywada", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "9000" },
+            { name: "jujubi", from: "vizag", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "8000" },
+            { name: "jujubi", from: "kochi", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "8000" },
+            { name: "jujubi", from: "kannur", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "7000" },
+            { name: "jujubi", from: "vijaywada", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "6000" },
+            { name: "waste travels", from: "vijaywada", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "5000" },
+            { name: "waste travels", from: "bengaluru", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "4000" },
+            { name: "waste travels", from: "kannur", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "3000" },
+            { name: "boochakram busses", from: "vijaywada", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "2000" },
+            { name: "boochakram busses", from: "kannur", to: "hyderabad", arrival: "4:00 PM", reach: "10:00 AM", price: "1000" },
+
+        ]
+        function submit() {
+         var display1 = document.getElementById("input1").value;
+          var display2 = document.getElementById("input2").value;
+          var display3 = document.getElementById("input3").value;
+          var display4 = document.getElementById("input4").value;
+          var display5 = document.getElementById("input5").value;
+          var display6 = document.getElementById("input6").value;
+            var obj = { name: display1, from: display2, to: display3, arrival: display4, reach: display5, price: display6 };    
+            busdetails.push(obj);
+            localStorage.setItem("person", JSON.stringify(busdetails));
+            document.getElementById("subbmitt").innerHTML= `<a href="./book-tikets.html">Submit</a>`        
+        } 
+    </script>
+</body>
+
+</html>

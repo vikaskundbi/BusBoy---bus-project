@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="./bus.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ADMIN</title>
+  <style>
+         body {
+    background-color: #252525;
+  }
+  </style>
+</head>
+
+<body>
+  <div id="navbar">
+    <ul>
+      <li>
+            <a href="./bus-real-homepage.html">BusBoy</a></h1>
+      </li>
+    </ul>
+    <ul>
+      <li> <a href="./bus-real-homepage.html">Logout</a> </li>
+    
+      <li> <a href="./userpage.html">View as customer</a> </li>
+    </ul>
+  </div>
+  <div class="admin-buttons">
+  <a href="./create new route.html"><button type="button" class="goldcolor-button">ADD BUSSES</button></a>
+
+
+  <a href="./bus-admin.html"></a> <button type="button" onclick="userdataa()" class="goldcolor-button">USER DATA</button></a>
+
+  <a href="./bus-admin.html"></a> <button type="button" onclick="deluser()" class="goldcolor-button">DELETE ALL USERS</button></a>
+
+  <a href="./bus-admin.html" ></a> <button  onclick="allbusses()" class="goldcolor-button">ALL BUSSES</button></a>
+
+</div>
+
+  <hr>
+  </hr>
+  <div id="userd">
+  </div> 
+  <div id="bstable"></div>
+  <div id="emptyall"></div>
+  <script>
+    function removebus() {
+      var user = JSON.parse(localStorage.removeItem('person'));
+      alert("Bus data Deleted")
+    }
+    function userdataa() {
+      var user = JSON.parse(localStorage.getItem('users'));
+      var dusplay = JSON.parse(localStorage.getItem('person'));
+      console.log(user);
+      var display = document.getElementById("userd");
+      var empty = ''
+      for (var a = 0; a < user.length; a++) {
+        empty +=
+          `<div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="./images/ticket confirmation.png" class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">Ticket ID:${a + a * a + a + a + '11' * a + '23' + a}</h5>
+        <p class="card-text"><b> Customer Name:</b> ${user[a].name}</p>
+    <p class="card-text"> <b>Customer Ph.No.:</b>${user[a].number}</p>
+    <p class="card-text"> <b>Customer Age:</b>${user[a].age}</p>
+    <p class="card-text"> <b>Journey Starts From:</b> ${user[a].from}</p>
+    <p class="card-text"><b> Destination: </b>${user[a].to}</p>
+    <p class="card-text"> <b>No. Of Tickets: </b>${user[a].tikets}</p>
+    <p class="card-text"> <b> each ticket price:</b>${dusplay[a].price}</p>
+    <p class="card-text"> <b>Total: </b>${dusplay[a].price * user[a].tikets}</p>
+
+      </div>
+    </div>
+  </div>
+</div>`
+        display.innerHTML = empty; 
+      } 
+    }
+    function deluser() {
+      window.alert("user data deleted")
+      var user = JSON.parse(localStorage.removeItem('users'));
+    
+    }
+
+    var userdata=[];
+        function allbusses(){
+          var display = JSON.parse(localStorage.getItem("person"));
+      var table = `<table border='2px' class='table table-dark'> 
+                <tr><th>BUSNAME</th><th>FROM</th><th>TO</th><th>ARRIVAL</th><th>REACH TIME</th><th>PRICE</th><th><button onclick='removebus()' class='goldcolor-button'>DELETE ALL</button></th></tr>`
+        for(var a=0;a<display.length;a++){
+          
+            table += `<tr><td> ${display[a].name }</td><td> ${display[a].from } </td><td>${display[a].to } </td><td>${display[a].arrival } </td><td> ${display[a].reach } </td><td>${display[a].price } </td><td><button onclick="deleteone(${a})" class="goldcolor-button">  Delete</button> </td></tr>`
+            document.getElementById("emptyall").innerHTML= table + `</table>`
+       
+        }
+console.log(display)
+    }
+
+    function deleteone(index){
+      var display = JSON.parse(localStorage.getItem("person"));
+      var table = `<table border='2px' class='table table-dark'> 
+                <tr><th>BUSNAME</th><th>FROM</th><th>TO</th><th>ARRIVAL</th><th>REACH TIME</th><th>PRICE</th><th><button onclick='removebus()'  class="goldcolor-button" >DELETE ALL</button></th></tr>`
+        for(var a=0;a<display.length;a++){
+          if(a==index){
+            display.splice(a,1);
+          }
+          else{
+            table += `<tr><td> ${display[a].name }</td><td> ${display[a].from } </td><td>${display[a].to } </td><td>${display[a].arrival } </td><td> ${display[a].reach } </td><td>${display[a].price } </td><td><button onclick="deleteone(${a})"  class="goldcolor-button">  Delete</button> </td></tr>`
+            document.getElementById("emptyall").innerHTML= table + `</table>`
+          }
+        }
+        localStorage.setItem("person",JSON.stringify(display));
+    }
+  </script>
+</body> 
+</html>
